@@ -1,80 +1,71 @@
-[![Build Status](https://travis-ci.com/rlivings39/vscode-fzf-quick-open.svg?branch=master)](https://travis-ci.com/rlivings39/vscode-fzf-quick-open)
-[![Marketplace](https://img.shields.io/visual-studio-marketplace/v/rlivings39.fzf-quick-open.svg)](https://marketplace.visualstudio.com/items?itemName=rlivings39.fzf-quick-open)
-[![Installs](https://img.shields.io/visual-studio-marketplace/i/rlivings39.fzf-quick-open.svg)](https://marketplace.visualstudio.com/items?itemName=rlivings39.fzf-quick-open)
-[![Rating](https://img.shields.io/visual-studio-marketplace/r/rlivings39.fzf-quick-open.svg)](https://marketplace.visualstudio.com/items?itemName=rlivings39.fzf-quick-open&ssr=false#review-details)
+# vscode-fzf-quick-open README
 
-# fzf-based fuzzy searching in VScode to open files/folders and filter ripgrep results
-Any time that vscode requires interaction with the OS file dialog, the workflow can become much less efficient. This comes up when opening files outside of your workspace folders or adding a workspace folder. This extension solves that by providing these actions using [fzf](https://github.com/junegunn/fzf).
+This is the README for your extension "vscode-fzf-quick-open". After writing up a brief description, we recommend including the following sections.
 
-Provides an interface to search using `ripgrep` and browse the results using `fzf`. This is inspired by Vim's `rg` and `fzf` integration. The search pattern defaults to the word under your cursor or your current selection and is easily overridden.
+## Features
 
-Works on *nix, Mac, and Windows. Tested with CMD, PowerShell, and Git Bash on Windows.
+Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
-# Usage
-Provides the commands:
+For example if there is an image subfolder under your extension project workspace:
 
-* `fzf: Search using rg and fzf` to search using `fzf` and `ripgrep`
-* `fzf: Open file using fzf` opens a terminal in which you can choose a file
-* `fzf: Add workspace folder using fzf` to add a workspace folder
+\!\[feature X\]\(images/feature-x.png\)
 
-On terminal launch, the `pwd` is chosen based on the active editor file. Also adds
+> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-* `fzf: Search in PWD using rg and fzf`
-* `fzf: Open file in PWD using fzf`
-* `fzf: Add workspace folder from PWD using fzf`
+## Requirements
 
-which are the same as above but switches to parent directory of active file on every invocation.
+If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
-On terminal launch, the `Project Root (.git)` is opened based on the results of `git rev-parse --show-toplevel` on the active editor file. Also adds
+## Extension Settings
 
-* `fzf: Search in Project Root (.git) using rg and fzf`
-* `fzf: Open file in Project Root (.git) using fzf`
+Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
 
-which are the same as the above but switches to project root directory of the active file on every invocation.
+For example:
 
-Bind the commands to keyboard shortcuts to launch faster.
+This extension contributes the following settings:
 
-## Configuration
+* `myExtension.enable`: Enable/disable this extension.
+* `myExtension.thing`: Set to `blah` to do something.
 
-Change the setting `fzf-quick-open.initialWorkingDirectory` to override the initial working directory used for the fzf terminal. Change `fzf-quick-open.findDirectoriesCmd` to change the command used to find directories. Something like `fd --type d` is very fast if you use [fd](https://github.com/sharkdp/fd).
+## Known Issues
 
-By default `fzf` is used as the fuzzy matcher command. To change this to add flags or use another tool like skim (`sk`) modify the setting `fzf-quick-open.fuzzyCmd` to be the command that should be run. It will be plugged in to a context like: `rg searchTerm | fzf --ansi --print0 ...` and needs to support `--ansi --print0` flags.
+Calling out known issues can help limit users opening duplicate issues against your extension.
 
-To change the `rg` case matching options use the setting `fzf-quick-open.ripgrepSearchStyle` to choose between:
+## Release Notes
 
-* Case sensitive
-* Ignore case
-* Smart case
+Users appreciate release notes as you update your extension.
 
-To pass other flags to `rg` add them to `fzf-quick-open.ripgrepOptions`.
+### 1.0.0
 
-# Setup
+Initial release of ...
 
-1. [Install fzf](https://github.com/junegunn/fzf)
-1. [Install ripgrep](https://github.com/BurntSushi/ripgrep)
-1. For best performance you should set up `fzf` to use the amazingly fast [fd](https://github.com/sharkdp/fd)
+### 1.0.1
 
-    **`~/.config/fish/config.fish`**
+Fixed issue #.
 
-    ```fish
-    set --universal FZF_DEFAULT_COMMAND 'fd'
-    ```
+### 1.1.0
 
-    **`~/.bashrc`**
+Added features X, Y, and Z.
 
-    ```bash
-    echo "export FZF_DEFAULT_COMMAND='fd'" >> ~/.bashrc
-    ```
+---
 
-1. Configure the setting `fzf-quick-open.findDirectoriesCmd` to use `fd`: `fd --type d`
+## Following extension guidelines
 
-# Examples
-**Search with ripgrep**
-![Search with rg and fzf](resources/fzfVscodeRg.gif)
+Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
 
-**Open file**
-![Open file with fzf](resources/fzfVscodeOpenFile.gif)
+* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
 
-**Open workspace folder**
-![Add workspace folder with fzf](resources/fzfVscodeOpenFolder.gif)
+## Working with Markdown
 
+You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+
+* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
+* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
+* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+
+## For more information
+
+* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
+* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+
+**Enjoy!**

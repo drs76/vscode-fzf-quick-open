@@ -1,146 +1,41 @@
 {
-  "name": "fzf-quick-open",
-  "displayName": "fzf fuzzy quick open",
-  "description": "Fuzzy search files/folders and ripgrep results with fzf inside VSCode",
-  "version": "0.5.1",
-  "author": "Ryan Livingston",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/rlivings39/vscode-fzf-quick-open"
-  },
-  "publisher": "rlivings39",
-  "icon": "resources/fzficon.png",
+  "name": "vscode-fzf-quick-open",
+  "displayName": "vscode-fzf-quick-open",
+  "description": "Fuzzy Search in VSCode",
+  "version": "0.0.1",
   "engines": {
-    "vscode": "^1.33.0"
+    "vscode": "^1.88.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:fzf-quick-open.runFzfFile",
-    "onCommand:fzf-quick-open.runFzfFilePwd",
-    "onCommand:fzf-quick-open.runFzfFileProjectRoot",
-    "onCommand:fzf-quick-open.runFzfAddWorkspaceFolder",
-    "onCommand:fzf-quick-open.runFzfAddWorkspaceFolderPwd",
-    "onCommand:fzf-quick-open.runFzfSearch",
-    "onCommand:fzf-quick-open.runFzfSearchPwd",
-    "onCommand:fzf-quick-open.runFzfSearchProjectRoot"
-  ],
+  "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "fzf-quick-open.runFzfFile",
-        "title": "fzf: Open file using fzf"
-      },
-      {
-        "command": "fzf-quick-open.runFzfFilePwd",
-        "title": "fzf: Open file in PWD using fzf"
-      },
-      {
-        "command": "fzf-quick-open.runFzfFileProjectRoot",
-        "title": "fzf: Open file in Project Root (.git) using fzf"
-      },
-      {
-        "command": "fzf-quick-open.runFzfAddWorkspaceFolder",
-        "title": "fzf: Add workspace folder using fzf"
-      },
-      {
-        "command": "fzf-quick-open.runFzfAddWorkspaceFolderPwd",
-        "title": "fzf: Add workspace folder from PWD using fzf"
-      },
-      {
-        "command": "fzf-quick-open.runFzfSearch",
-        "title": "fzf: Search using rg and fzf"
-      },
-      {
-        "command": "fzf-quick-open.runFzfSearchPwd",
-        "title": "fzf: Search in PWD using rg and fzf"
-      },
-      {
-        "command": "fzf-quick-open.runFzfSearchProjectRoot",
-        "title": "fzf: Search in Project Root (.git) using rg and fzf"
+        "command": "vscode-fzf-quick-open.helloWorld",
+        "title": "Hello World"
       }
-    ],
-    "configuration": {
-      "title": "fzf quick open",
-      "properties": {
-        "fzf-quick-open.initialWorkingDirectory": {
-          "scope": "window",
-          "type": "string",
-          "default": "",
-          "description": "Initial working directory for fzf"
-        },
-        "fzf-quick-open.findDirectoriesCmd": {
-          "scope": "window",
-          "type": "string",
-          "default": "find . -type d",
-          "description": "Command used to find directories with fzf. For best performance install fd and use 'fd --type d'"
-        },
-        "fzf-quick-open.codeCmd": {
-          "scope": "window",
-          "type": "string",
-          "default": "code",
-          "deprecationMessage": "DEPRECATED: This option has no utility as of v0.3.0. We avoid use of the code command line API and don't need this to distinguish code from code-insiders. Please report unexpected issues based on the removal of this property.",
-          "description": "Command used to launch VSCode. Set to code-insiders if using insiders build"
-        },
-        "fzf-quick-open.fuzzyCmd": {
-          "scope": "window",
-          "type": "string",
-          "default": "fzf",
-          "description": "Command used for fuzzy searching program. E.g. fzf, sk"
-        },
-        "fzf-quick-open.ripgrepSearchStyle": {
-          "scope": "window",
-          "type": "string",
-          "enum": [
-            "Case sensitive",
-            "Ignore case",
-            "Smart case"
-          ],
-          "markdownEnumDescriptions": [
-            "Do a case sensitive search (`--case-sensitive`)",
-            "Do a case insensitive search (`--ignore-case`)",
-            "Smart case based on search string (`--smart-case`)"
-          ],
-          "default": "Case sensitive",
-          "description": "Command used for fuzzy searching program. E.g. fzf, sk"
-        },
-        "fzf-quick-open.ripgrepOptions": {
-          "scope": "window",
-          "type": "string",
-          "default": [],
-          "description": "Options to pass to rg"
-        }
-      }
-    }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "lint": "tslint -p ./",
-    "pretest": "npm run compile",
-    "test": "node ./out/test/runTest.js",
-    "coverage": "COVERAGE=1 nyc npm run test",
-    "package": "npm run compile && vsce package",
-    "publish": "npm run compile && vsce publish"
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/chai": "^4.2.8",
-    "@types/glob": "^7.1.1",
-    "@types/mocha": "^10.0.0",
-    "@types/node": "^6.14.10",
-    "@types/vscode": "^1.33.0",
-    "chai": "^4.2.0",
-    "glob": "^7.1.4",
-    "minimist": "^1.2.5",
-    "mocha": "^10.1.0",
-    "nyc": "^15.0.0",
-    "tslint": "^5.16.0",
-    "typescript": "^4.4.4",
-    "@vscode/vsce": "^2.15.0",
-    "vscode-test": "^1.0.0"
+    "@types/vscode": "^1.88.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.3.9"
   }
 }
